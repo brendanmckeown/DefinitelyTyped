@@ -1,8 +1,7 @@
-// Type definitions for Numeral.js
+// Type definitions for Numeral.js 2.0
 // Project: https://github.com/adamwdraper/Numeral-js
 // Definitions by: Vincent Bortone <https://github.com/vbortone/>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
-
 
 // http://numeraljs.com/#locales
 interface NumeralJSLocale {
@@ -24,14 +23,18 @@ interface NumeralJSLocale {
 
 type RoundingFunction = (value: number) => number;
 
+type FormatFunction = (value: any, format: string, roundingFunction: RoundingFunction) => string;
+
+type UnformatFunction = (value: string) => number;
+
 // http://numeraljs.com/#custom-formats
 interface NumeralJsFormat {
 	regexps: {
 		format: RegExp,
 		unformat: RegExp,
-	},
-	format: (value: any, format: string, roundingFunction: RoundingFunction) => string,
-	unformat: (value: string) => number
+	};
+	format: FormatFunction;
+	unformat: UnformatFunction;
 }
 
 type RegisterType = 'format' | 'locale';
@@ -66,7 +69,7 @@ interface Numeral {
 	unformat(inputString: string): number;
 	value(): number;
 	valueOf(): number;
-	set (value: any): Numeral;
+	set(value: any): Numeral;
 	add(value: any): Numeral;
 	subtract(value: any): Numeral;
 	multiply(value: any): Numeral;
@@ -81,7 +84,5 @@ declare var numeral: Numeral;
  * Usage: <code>import * as numeral from 'numeral'</code>
  */
 declare module "numeral" {
-
-    export = numeral;
-
+	export = numeral;
 }

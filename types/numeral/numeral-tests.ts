@@ -1,50 +1,47 @@
-
-
-var valueFormat: string = numeral(1000).format('0,0');
+let valueFormat: string = numeral(1000).format('0,0');
 // '1,000'
 
-var valueUnformat: number = numeral().unformat('($10,000.00)');
+let valueUnformat: number = numeral().unformat('($10,000.00)');
 // '-10000'
 
-var valueFormatFloor: string = numeral(1.357).format('0.00', Math.floor);
+let valueFormatFloor: string = numeral(1.357).format('0.00', Math.floor);
 // '1.35'
 
-var value3: Numeral = numeral(1000);
-var added: Numeral = value3.add(10);
+let value3: Numeral = numeral(1000);
+let added: Numeral = value3.add(10);
 // 1010
 
-var value4: Numeral = numeral(1000);
-var formatValue4a: string = value4.format('0,0');
+let value4: Numeral = numeral(1000);
+let formatValue4a: string = value4.format('0,0');
 // '1,000'
-var formatValue4b: number = value4.value();
+let formatValue4b: number = value4.value();
 // 1000
 
-var value5: Numeral = numeral();
+let value5: Numeral = numeral();
 value5.set(1000);
-var value5Num: number = value5.value();
+let value5Num: number = value5.value();
 // 1000
 
-var value6: Numeral = numeral(1000);
-var value: number = 100;
-var difference = value6.difference(value);
+let value6: Numeral = numeral(1000);
+let value: number = 100;
+let difference = value6.difference(value);
 // 900
 
-var value7: Numeral = numeral(0);
+let value7: Numeral = numeral(0);
 numeral.zeroFormat('N/A');
-var zeroString: string = value7.format('0.0');
+let zeroString: string = value7.format('0.0');
 // 'N/A'
 
-var a: Numeral = numeral(1000);
-var b: Numeral = numeral(a);
-var c: Numeral = a.clone();
+let a: Numeral = numeral(1000);
+let b: Numeral = numeral(a);
+let c: Numeral = a.clone();
 
-var aVal: number = a.set(2000).value();
+let aVal: number = a.set(2000).value();
 // 2000
-var bVal: number = b.value();
+let bVal: number = b.value();
 // 1000
-var cVal: number = c.add(10).value();
+let cVal: number = c.add(10).value();
 // 1010
-
 
 // Formats
 numeral.register('format', 'percentage', {
@@ -52,16 +49,15 @@ numeral.register('format', 'percentage', {
         format: /(%)/,
         unformat: /(%)/
     },
-    format: function(value, format, roundingFunction) {
+    format: (value, format, roundingFunction) => {
         return 'foo';
     },
-    unformat: function(string) {
+    unformat: (string) => {
         return 123;
     }
 });
 
-var customFormatted = numeral().format('0%');
-
+let customFormatted = numeral().format('0%');
 
 // Locales
 // load a locale
@@ -76,7 +72,7 @@ numeral.register('locale', 'fr', {
         billion: 'b',
         trillion: 't'
     },
-    ordinal : function (number) {
+    ordinal: (number) => {
         return number === 1 ? 'er' : 'ème';
     },
     currency: {
